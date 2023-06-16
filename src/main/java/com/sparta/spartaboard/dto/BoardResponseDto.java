@@ -14,4 +14,10 @@ public class BoardResponseDto {
         this.username = board.getUsername();
         this.contents = board.getContents();
     }
+
+    public BoardResponseDto(Long id, String username, String contents) {
+        this.id = id;
+        this.username = username;
+        this.contents = contents;
+    }
 }
