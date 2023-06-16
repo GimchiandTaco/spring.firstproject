@@ -23,4 +23,9 @@ public class Board {
         this.username = requestDto.getUsername();
 
     }
+
+    public void update(BoardRequestDto requestDto) {
+        this.username = requestDto.getUsername();
+        this.contents = requestDto.getContents();
+    }
 }
