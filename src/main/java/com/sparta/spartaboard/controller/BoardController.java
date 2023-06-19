@@ -3,17 +3,17 @@ package com.sparta.spartaboard.controller;
 import com.sparta.spartaboard.dto.BoardRequestDto;
 import com.sparta.spartaboard.dto.BoardResponseDto;
 import com.sparta.spartaboard.service.BoardService;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController  //모든 메서드에 @ResponseBod y 애너테이션 추가됨 Json 데이터 요청
 @RequestMapping("/api")
 public class BoardController {
-
+// BoardController > BoardService > BoardRepository (강한결합)
     private final BoardService boardService;
-    public BoardController(JdbcTemplate jdbcTemplate) {
-        this.boardService = new BoardService(jdbcTemplate); }
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService; }
     //jdbcTemplate을 이용한 DB 저장
 
     //게시글 생성하기

@@ -4,15 +4,6 @@ import com.sparta.spartaboard.dto.BoardRequestDto;
 import com.sparta.spartaboard.dto.BoardResponseDto;
 import com.sparta.spartaboard.entity.Board;
 import com.sparta.spartaboard.repository.BoardRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 //Service
@@ -20,9 +11,9 @@ import java.util.List;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    public BoardService(JdbcTemplate jdbcTemplate) {
+    public BoardService(BoardRepository boardRepository) {
 
-        this.boardRepository = new BoardRepository(jdbcTemplate);
+        this.boardRepository = boardRepository;
     }
 
 
