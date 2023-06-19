@@ -4,7 +4,16 @@ import com.sparta.spartaboard.dto.BoardRequestDto;
 import com.sparta.spartaboard.dto.BoardResponseDto;
 import com.sparta.spartaboard.entity.Board;
 import com.sparta.spartaboard.repository.BoardRepository;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
+
+@Component
+// 1. BoardService 객체 생성
+
+// 2. Spring IoC 컨테이너에 Bean (boardService) 저장
+// boardService -> Spring IoC 컨테이너
+
 
 //Service
 //사용자의 요구사항을 처리(비즈니스로직) 하는 서비스 코드
@@ -12,7 +21,6 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     public BoardService(BoardRepository boardRepository) {
-
         this.boardRepository = boardRepository;
     }
 
