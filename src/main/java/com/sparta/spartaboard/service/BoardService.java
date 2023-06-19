@@ -18,10 +18,11 @@ import java.util.List;
 //Service
 //사용자의 요구사항을 처리(비즈니스로직) 하는 서비스 코드
 public class BoardService {
-    private final JdbcTemplate jdbcTemplate;
+    private final BoardRepository boardRepository;
 
     public BoardService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+
+        this.boardRepository = new BoardRepository(jdbcTemplate);
     }
 
 
@@ -31,9 +32,8 @@ public class BoardService {
         //board 클래스 객체 하나가 데이터베이스의 한줄, 한row다
 
         // DB 저장
-        BoardRepository boardRepository = new BoardRepository(jdbcTemplate);
-        Board savePost = boardRepository.save(board);
 
+        Board savePost = boardRepository.save(board);
         //Entity - > ResponseDto
         BoardResponseDto boardResponseDto = new BoardResponseDto(board);
 
@@ -42,13 +42,11 @@ public class BoardService {
 
     public List<BoardResponseDto> getPost() {
         //DB조회
-        BoardRepository boardRepository = new BoardRepository(jdbcTemplate);
         return boardRepository.findAll();
 
     }
 
     public Long updatePost(Long id, BoardRequestDto requestDto) {
-        BoardRepository boardRepository = new BoardRepository(jdbcTemplate);
 
         Board board = boardRepository.findById(id);
         if (board != null) {
@@ -62,7 +60,6 @@ public class BoardService {
     }
 
     public Long selectedPost(Long id) {
-        BoardRepository boardRepository = new BoardRepository(jdbcTemplate);
         Board board = boardRepository.findById(id);
         if (board != null) {
             return id;
@@ -72,7 +69,6 @@ public class BoardService {
     }
 
     public Long deletePost(Long id) {
-        BoardRepository boardRepository = new BoardRepository(jdbcTemplate);
 
         Board board = boardRepository.findById(id);
         if (board != null) {
